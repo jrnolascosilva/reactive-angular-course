@@ -3,6 +3,7 @@ import { Course } from '../model/course';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
 import { outputAst } from '@angular/compiler';
+import { filter, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'courses-card-list',
@@ -32,8 +33,9 @@ export class CoursesCardListComponent {
 
     dialogRef.afterClosed()
       .pipe(
-
-    )
+        filter(val => !!val),
+        tap(() => this.coursesChanged.emit())
+      )
       .subscribe();
 
   }
