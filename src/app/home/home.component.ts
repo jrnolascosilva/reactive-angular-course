@@ -6,6 +6,7 @@ import { catchError, delay, delayWhen, filter, finalize, map, retryWhen, shareRe
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { CourseDialogComponent } from '../course-dialog/course-dialog.component';
+import { LoadingService } from '../services/loading.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class HomeComponent implements OnInit {
   advancedCourses$: Observable<Course[]>;
 
 
-  constructor(private coursesService: CoursesService) {
+  constructor(private coursesService: CoursesService,
+    private loadingService: LoadingService) {
 
   }
 
